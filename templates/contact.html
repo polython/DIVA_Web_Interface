@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Get DIVA request status
+{% endblock %}
+
+{% block nav %}
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <a href="{{ url_for('index') }}"><h1 class="title"><img src="static/image/DiscoveryDIVALogo.png" height="58" width="250" /></h1></a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('status') }}">Request Status</a></li>
+                        <li><a href="{{ url_for('sop') }}">Spectra SOP</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1><u>Contact BNE</u></h1>
+        <p>
+            If you have followed the SOP on this site, and the import request still fails, please first submit
+            a ticket at <a href="http://mtposupport.discovery.com/mtpoticket">MTPO Support</a>
+        </p>
+        <p>
+            Additionally, you may call the hotline from 8AM to 10PM: 240-662-6565
+        </p>
+        <h3>For general questions:</h3>
+        <ul>
+            <li>
+                Email: <a href="mailto:mtpo_bne@discovery.com?Subject=DIVA%20Import%20Question">MTPO BNE</a>
+                (mtpo_bne@discovery.com)
+            </li>
+        </ul>
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <div class="footer-container">
+        <footer class="wrapper">
+            <h3>Please verify Spectra tape import has completed before proceeding!</h3>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

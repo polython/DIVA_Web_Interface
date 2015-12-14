@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+Get DIVA request status
+{% endblock %}
+
+{% block nav %}
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <a href="{{ url_for('index') }}"><h1 class="title"><img src="static/image/DiscoveryDIVALogo.png" height="58" width="250" /></h1></a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('status') }}">Request Status</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact BNE</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1><u>SpectraLogic T-Finity Import Guide</u></h1>
+        <ul>
+            <li><a href="static/image/SpectraSOP.pdf" download>SpectraLogic SOP PDF for Download</a></li>
+        </ul>
+        <p>1. Remove the stylus from the side of the center panel, near the touchscreen</p>
+        <img src="static/image/Stylus.jpg" height="666%" width="500">
+        <p>2. On the touchscreen, using the stylus, select/tap "<b>select here to log in"</b></p>
+        <img src="static/image/Login.jpg" width="500">
+        <p>3. To use the keyboard, select/tap the keyboard icon in the bottom right of the screen.
+                The toggle to switch between letters and numbers/other characters is in the bottom right
+        </p>
+        <img src="static/image/Keyboard.jpg" width="500">
+        <p>4. In the following screen, enter the credentials below in the User and Password fields, respectively,
+              then select/tap "<b>Login</b>
+        </p>
+        <ul>
+            <li>User - operator</li>
+            <li>Password - mtp0spectra</li>
+        </ul>
+        <img src="static/image/Creds.jpg" width="500">
+        <p>5. Once at the Home screen, in the let navigation pane, select/tap "<b>Import/Export</b>"
+        </p>
+        <img src="static/image/Home.jpg" width="500">
+        <p>6. In the Import/Export screen, select/tap "<b>Export/Exchange</b>" for <b>Populated Chambers</b>
+            in the <b>Entry/Exit</b> section
+        </p>
+        <img src="static/image/Import.jpg" width="500">
+        <p>7. At this point, once a robot is available, the moves required to transport the TeraPack to the TAP
+            (import/export chamber) will begin.
+        </p>
+        <img src="static/image/Status.jpg" width="500">
+        <p>8. The TAP will open; remove the TeraPack, insert the tape(s), such the the barcode(s) will be oriented with
+            the "D" character to your left.  The TeraPack is slotted, so a tape can only be inserted in one direction.
+        </p>
+        <img src="static/image/Terapack.jpg" width="500">
+        <p>9. Inser the TeraPack back into the TAP, such that the tape spindle is facing you, as seen below.
+        </p>
+        <img src="static/image/TAP.jpg" width="500">
+        <p>10. At this point select "<b>Stop Exporting</b>" to complete importing the tapes/TeraPack.  An additional
+            progress screen will ben shown.  When import is complete, the Home screen is returned, and you can use
+            the Diva Import site to re-import the tape(s) to DIVA.
+        </p>
+        <img src="static/image/Stop Export.jpg" width="500">
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <div class="footer-container">
+        <footer class="wrapper">
+            <h3>Please verify Spectra tape import has completed before proceeding!</h3>
+        </footer>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

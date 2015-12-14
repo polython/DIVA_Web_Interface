@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="../static/css/normalize.min.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+
+        <script src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+        <script type=text/javascript>
+
+            function openModal() {
+                document.getElementById('modal').style.display = 'block';
+                document.getElementById('fade').style.display = 'block';
+            }
+
+            function closeModal() {
+                document.getElementById('modal').style.display = 'none';
+                document.getElementById('fade').style.display = 'none';
+            }
+
+            function loadAjax() {
+                document.getElementById('results').innerHTML = '';
+                openModal();
+                var xhr = false;
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                }
+                else {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                if (xhr) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            closeModal();
+                            document.getElementById("results").innerHTML = xhr.responseText;
+                        }
+                    }
+                    xhr.open("POST", "/", true);
+                    xhr.send(null);
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <a href="{{ url_for('index') }}"><h1 class="title"><img src="static/image/DiscoveryDIVALogo.png" height="58" width="250" /></h1></a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('status') }}">Request Status</a></li>
+                        <li><a href="{{ url_for('sop') }}">Spectra SOP</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact BNE</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article class=flashes>
+                    {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                        <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                      {% endif %}
+                    {% endwith %}
+                </article>
+
+                <article>
+                    <header>
+                        <h1>{{ reqstat }}</h1>
+                        <p>Welcome to the DIVA tape import utility.  If there is a current request in progress, it will be shown above.</p>
+                    </header>
+                    <section>
+                        <h2>Last Request ID: {{ title1 }}</h2>
+                        <p>This is the DIVA ID for the previous request.  To create an additional request, use the section on the page below</p>
+                    </section>
+                    {% block content %}
+                    <section>
+                        <h2>Re-import tape(s) to DIVA</h2>
+                        <p>Enter multiple barcodes separated by a space, and Import ONCE!</p>
+                        <form action="" method="post">
+                            <article>
+                                <p>
+                                    (Optional) Enter barcode(s) # here: <input type="text" name="tape">
+                                </p>
+                                <p>
+                                    <em>Example: D01234 D03579</em>
+                                </p>
+                                <p>
+                                    <button type="submit" id="sub" onclick="loadAjax();">Import Tape</button>
+                                </p>
+                            </article>
+                        </form>
+                    </section>
+                    {% endblock %}
+                </article>
+
+                <aside>
+                    <h3 id="instr">Instructions</h3>
+                    <p>Follow the SOP for importing an externalized tape into the SpectraLogic T-Finity
+                        before processing with the DIVA tape import.  Failure to follow the SOP will result
+                        in your request not completing.</p>
+                </aside>
+                <div id="content">
+                    <div id="results"><!-- Results are displayed here --></div>
+                    <div id="fade"></div>
+                    <div id="modal">
+                        <img id="loader" src="static/image/ajax-loader.gif" />
+                    </div>
+                </div>
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>Please verify Spectra tape import has completed before proceeding!</h3>
+            </footer>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
